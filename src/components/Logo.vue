@@ -5,10 +5,15 @@
     </a>
 </template>
 
-<script setup lang='ts'>
-    
+<script>
+    export default { 
+        name: 'LogoComponent'
+    }
 </script>
     
-<style>
-    
+<style scoped lang="scss">
+.main-logo {
+    width: initial;
+    height: 4em;
+}
 </style>

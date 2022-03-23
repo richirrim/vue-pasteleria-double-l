@@ -28,9 +28,36 @@
 </template>
     
 <script>
-    
+    export default {
+        name: 'AboutCompoenent'
+    }
 </script>
     
-<style>
-    
+<style scoped lang="scss">
+/*-----------------------*\
+    $About
+\*-----------------------*/
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > div {
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 2em;
+    }
+    &__container {
+        flex-basis: 40%;
+    }
+    &__description p:last-child {
+        margin-bottom: 0;
+    }
+    &__image {
+        border-radius: 1em;
+        width: 26em;
+        box-shadow: rgba(0, 0, 0, 0.1) -3px 6px 6px;
+    }
+}
 </style>

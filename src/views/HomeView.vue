@@ -1,5 +1,8 @@
 <template>
-  <Header />
+  <Header 
+    :title="title"
+    :description="description"
+    v-bind:isButtonActivate="true"/>
   <main class="main-header  l-section">
     <About />
     <Products />
@@ -10,11 +13,11 @@
 
 <script>
 // @ is an alias to /src
-import Header from '@/components/HeaderView.vue'
-import About from '@/components/AboutView.vue'
-import Products from '@/components/ProductsView.vue'
-import Contact from '@/components/ContactView.vue'
-import Footer from '@/components/FooterView.vue'
+import Header from '@/components/Header.vue'
+import About from '@/components/About.vue'
+import Products from '@/components/Products.vue'
+import Contact from '@/components/Contact.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'HomeView',
@@ -24,6 +27,12 @@ export default {
     Products,
     Contact,
     Footer
+  },
+  data() {
+    return {
+      title: 'ENCUENTRA Y DISEÑA UN MEJOR PASTEL',
+      description: 'Encuentra los pasteles más deliciosos y ponle tus propias chipas crativas, con tus propias manos.'
+    }
   }
 }
 </script>
