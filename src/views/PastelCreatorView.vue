@@ -36,19 +36,22 @@
       <Form />
     </section>
   </main>
+  <Footer />
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
 import ListCardV2 from '@/components/ListCardV2.vue'
 import Form from '@/components/Form.vue'
+import Footer  from '@/components/Footer.vue'
 
 export default {
   name: 'PastelCreatorView',
   components: {
     Header,
     ListCardV2,
-    Form
+    Form,
+    Footer
   },
   data() {
     return {
