@@ -30,18 +30,25 @@
       v-bind:isActivateImageEl="true"
       v-bind:products="toppings"/>
     </section>
+    <!-- ---------- $Make order --------------- -->
+    <section class="make-order  l-section  l-container  center-content">
+      <h2 class="make-order__title">Realizar pedido</h2>
+      <Form />
+    </section>
   </main>
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
 import ListCardV2 from '@/components/ListCardV2.vue'
+import Form from '@/components/Form.vue'
 
 export default {
   name: 'PastelCreatorView',
   components: {
     Header,
-    ListCardV2
+    ListCardV2,
+    Form
   },
   data() {
     return {
@@ -162,7 +169,8 @@ export default {
 
 
 .flavors, 
-.toppings {
+.toppings,
+.make-order {
     gap: var(--gutter);
     justify-content: center;
     &__title {
