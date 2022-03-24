@@ -14,8 +14,8 @@
     </section>
     <!-- ---------- $Flavors --------------- -->
     <section id="js-flavors" class="flavors  l-section  l-container  center-content">
-      <h2 class="flav+ors__title">Selecciona máximo dos sabores</h2>
-      <span class="flavors__number-selected-flavors">Sabores seleccionados: <span id="js-selected-flovers">0/2</span></span>
+      <h2 class="flavors__title">Selecciona máximo dos sabores</h2>
+      <span class="flavors__text">Sabores seleccionados: <span id="js-selected-flovers">0/2</span></span>
       <ListCardV2 
       v-bind:labelType="'checkbox'" 
       v-bind:isActivateImageEl="false"
@@ -25,6 +25,10 @@
     <section id="js-toppings" class="toppings  l-section  l-container  center-content">
       <h2 class="toppings__title">Selecciona máximo 4 toppings</h2>
       <span class="toppings__text">Topping seleccionados: <spa id="js-selected-toppings">0/4</spa></span>
+      <ListCardV2 
+      v-bind:labelType="'checkbox'" 
+      v-bind:isActivateImageEl="true"
+      v-bind:products="toppings"/>
     </section>
   </main>
 </template>
@@ -65,28 +69,28 @@ export default {
       ],
       flavors: [
         {
-            price: '15',
-            imageName: '',
-            text: 'Vainilla',
-            classComponentName: 'card-flavor'
+          price: '15',
+          imageName: '',
+          text: 'Vainilla',
+          classComponentName: 'card-flavor'
         },
         {
-            price: '15',
-            imageName: '',
-            text: 'Chocolate',
-            classComponentName: 'card-flavor'
+          price: '15',
+          imageName: '',
+          text: 'Chocolate',
+          classComponentName: 'card-flavor'
         },
         {
-            price: '200',
-            imageName: '',
-            text: 'Limon',
-            classComponentName: 'card-flavor'
+          price: '200',
+          imageName: '',
+          text: 'Limon',
+          classComponentName: 'card-flavor'
         },
         {
-            price: '16',
-            imageName: '',
-            text: 'Uva loca',
-            classComponentName: 'card-flavor'
+          price: '16',
+          imageName: '',
+          text: 'Uva loca',
+          classComponentName: 'card-flavor'
         },
         {
             price: '15',
@@ -95,10 +99,48 @@ export default {
             classComponentName: 'card-flavor'
         },
         {
-            price: '18',
-            imageName: '',
-            text: 'Chamoyada',
-            classComponentName: 'card-flavor'
+          price: '18',
+          imageName: '',
+          text: 'Chamoyada',
+          classComponentName: 'card-flavor'
+        }
+      ],
+      toppings: [
+        {
+          price: '6',
+          imageName: 'topping-fresas',
+          text: 'Fresas',
+          classComponentName: 'card-topping'
+        },
+        {
+          price: '15',
+          imageName: 'topping-chispast',
+          text: 'Chispas',
+          classComponentName: 'card-topping'
+        },
+        {
+          price: '8',
+          imageName: 'topping-oreo',
+          text: 'Oreo',
+          classComponentName: 'card-topping'
+        },
+        {
+          price: '10',
+          imageName: 'topping-chocolate',
+          text: 'Chocolate',
+          classComponentName: 'card-topping'
+        },
+        {
+            price: '20',
+            imageName: 'topping-text',
+            text: 'Frase',
+            classComponentName: 'card-topping'
+        },
+        {
+          price: '5',
+          imageName: 'topping-crema',
+          text: 'Crema',
+          classComponentName: 'card-topping'
         }
       ]
     }
@@ -119,9 +161,6 @@ export default {
 }
 
 
-/*-----------------------*\
-    $Flavors
-\*-----------------------*/
 .flavors, 
 .toppings {
     gap: var(--gutter);
@@ -129,7 +168,7 @@ export default {
     &__title {
         width: 100%;
     }
-    &__number-selected-flavors {
+    &__text {
         display: inline-block;
         font-size: 1.4em;
         width: 100%;
