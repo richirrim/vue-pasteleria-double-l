@@ -2,7 +2,11 @@
     <!-- ---------- $Navegation --------------- -->
     <nav class="main-nav">
         <ul class="menu">
-            <li v-for="page in pages" v-bind:key="page" class="menu__item"><a class="menu__link" v-bind:href="page.url">{{ page.title }}</a></li>
+            <li class="menu__item"  v-for="page in pages" v-bind:key="page">
+                <a class="menu__link" 
+                v-bind:href="page.url === '/' ? page.url : '#'+page.url" 
+                @click.prevent="scrollInto(page.url)">{{ page.title }}</a>
+            </li>
         </ul>
     </nav>
 </template>
@@ -19,18 +23,25 @@ export default {
                 }, 
                 {
                     title: 'Nosotros',
-                    url: '#about'
+                    url: 'about'
                 },
                 {
                     title: 'Productos',
-                    url: '#products'
+                    url: 'products'
                 }, 
                 {
                     title: 'Contacto',
-                    url: '#contact'
+                    url: 'contact'
                 }
             ]
         }
+    },
+    methods: {
+        scrollInto(id) {
+            const section = document.querySelector(`#${id}`);
+            section.scrollIntoView({ behavior: 'smooth' });
+        },
+
     }
 }
 </script>
@@ -39,7 +50,7 @@ export default {
 /*-----------------------*\
     $Navigation
 \*-----------------------*/
-.main-nav {}
+
 
 
 /*-----------------------*\

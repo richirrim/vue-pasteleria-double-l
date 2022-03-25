@@ -1,6 +1,4 @@
 <template>
-  <router-link to="/">Home</router-link>
-  <router-view/>
   <Header v-bind:title="title" v-bind:description="description"/>
   <main class="main  main__pastel-creator">
     <h1 class="title  center-content">Let´s Go!</h1>
@@ -14,12 +12,7 @@
     </section>
     <!-- ---------- $Flavors --------------- -->
     <section id="js-flavors" class="flavors  l-section  l-container  center-content">
-      <h2 class="flavors__title">Selecciona máximo dos sabores</h2>
-      <span class="flavors__text">Sabores seleccionados: <span id="js-selected-flovers">0/2</span></span>
-      <ListCardV2 
-      v-bind:labelType="'checkbox'" 
-      v-bind:isActivateImageEl="false"
-      v-bind:products="flavors"/>
+      <Flavors />
     </section>
     <!-- ---------- $Toppings --------------- -->
     <section id="js-toppings" class="toppings  l-section  l-container  center-content">
@@ -44,6 +37,7 @@ import Header from '@/components/Header.vue'
 import ListCardV2 from '@/components/ListCardV2.vue'
 import Form from '@/components/Form.vue'
 import Footer  from '@/components/Footer.vue'
+import Flavors  from '@/components/Flavors.vue'
 
 export default {
   name: 'PastelCreatorView',
@@ -51,7 +45,8 @@ export default {
     Header,
     ListCardV2,
     Form,
-    Footer
+    Footer,
+    Flavors
   },
   data() {
     return {

@@ -5,7 +5,12 @@
         
         <span v-bind:class="classComponentName+'__price'">${{ price }}MXN</span>
         <div v-bind:class="classComponentName+'__input-control'">
-            <input v-bind:class="classComponentName+'__input'" v-bind:type="labelType" v-bind:id="type" name="drone" v-bind:value="type">
+            <input 
+                v-bind:class="classComponentName+'__input'" 
+                v-bind:type="labelType" v-bind:id="type" name="drone" 
+                v-bind:value="type" 
+                v-model="isChecked"
+                v-on:change="onChange">
             <label v-bind:class="classComponentName+'__label'" v-bind:for="type">{{ text }}</label>
         </div>
     </div>
@@ -28,9 +33,15 @@
                 flavor: this.text.toLowerCase().split(' ').join('-'),
                 url: this.imageName ? require(`@/assets/images/${this.imageName}.png`) : '',
                 type: this.classComponentName.split('-').pop() + this.indexElement,
-                tag: `cake${this.indexElement + 1}`
+                tag: `cake${this.indexElement + 1}`,
+                isChecked: ''
             }
         }
+        // methods: {
+        //     onChange() {
+        //         this.$store.commit('productsAccountant', this.isChecked)
+        //     }
+        // }
     }
 </script>
     
@@ -43,7 +54,6 @@
     }
 }
 .card-cake,
-.card-flavor,
 .card-topping {
     &__input-control {
         display: flex;
@@ -75,50 +85,6 @@
     }
 }
 
-
-/*-----------------------*\
-    $Card flavor
-\*-----------------------*/
-.card-flavor {
-    border: 1px solid var(--color-first);
-    background-color: transparent;
-    box-shadow: none;
-    flex-basis: var(--grid-3-columns);
-    &__color {
-        --width: 1em;
-        margin-left: auto;
-        margin-right: auto;
-        width: var(--width);
-        height: var(--width);
-        box-shadow: rgba(0, 0, 0, 0.1) 0 3px 6px;
-    }
-    &__price {
-        display: inline-block;
-        font-size: 1.2em;
-        width: 100%;
-    }
-    &__label {
-        font-size: 1.6em;
-    }
-    & .card-flavor__vainilla {
-        background-color: #F3E5AB;
-    }
-    & .card-flavor__chocolate {
-        background-color: #a1887f;
-    }
-    & .card-flavor__limon {
-        background-color: #aed581;
-    }
-    & .card-flavor__uva-loca {
-        background-color: #ba68c8;
-    }
-    & .card-flavor__mora-azul {
-        background-color: #4fc3f7;
-    }
-    & .card-flavor__chamoyada {
-        background-color: #ff8a65;
-    }
-}
 
 /*-----------------------*\
     $Card toppings
