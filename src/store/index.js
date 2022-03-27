@@ -2,16 +2,17 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    flavorsAccountant: 0
+    flavorsAccountant: 0,
+    toppingsAccountant: 0
   },
   getters: {
   },
   mutations: {
-    productsAccountant(state, isChecked) {
+    productsAccountant(state, {accountant, isChecked}) {
       if (isChecked) {
-        state.flavorsAccountant++
+        state[accountant]++
       } else {
-        state.flavorsAccountant--
+        state[accountant]--
       }
     }
   },

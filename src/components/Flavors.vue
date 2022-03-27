@@ -1,6 +1,6 @@
 <template>
     <h2 class="flavors__title">Selecciona máximo dos sabores</h2>
-    <span class="flavors__text">Sabores seleccionados: {{ getflavorsAccountant }}/2</span>
+    <span class="flavors__text">Sabores seleccionados: {{ getFlavorsAccountant }}/2</span>
         <div v-for="(flavor, index) in flavors" v-bind:key="flavor" class="card  card-flavor">
             <div v-bind:class="`card  card-flavor__color  card-flavor__${formatTextToKebabCase(flavor.text)}`"></div>
             <span class="card-flavor__price">${{ flavor.price }}MXN</span>
@@ -55,10 +55,13 @@ export default {
     methods: {
         onChange(e) {
             const inputElList = this.$refs.inputRef
-            this.$store.commit('productsAccountant', e.target.checked)
+            this.$store.commit('productsAccountant', {
+                accountant: 'flavorsAccountant', 
+                isChecked: e.target.checked
+            })
             this.listDisabledInputEl = []
             this.createInputsListUnchecked(inputElList)
-            this.getflavorsAccountant === 2 
+            this.getFlavorsAccountant === 2 
                 ? this.disableUncheckedInputs() 
                 : this.removeDisabledAttribute(inputElList)
         },
@@ -86,7 +89,7 @@ export default {
         }
     },
     computed: {
-        getflavorsAccountant() {
+        getFlavorsAccountant() {
             return this.$store.state.flavorsAccountant
         }
     }

@@ -1,5 +1,7 @@
 <template>
-  <Header v-bind:title="title" v-bind:description="description"/>
+  <Header 
+    v-bind:title="'No pares hasta quedar satisfecho con tu creación 🎂'" 
+    v-bind:description="'Pasteles deliciosos y de gran calidad para hacerte feliz.'"/>
   <main class="main  main__pastel-creator">
     <h1 class="title  center-content">Let´s Go!</h1>
     <!-- ---------- $Base cakes --------------- -->
@@ -16,12 +18,7 @@
     </section>
     <!-- ---------- $Toppings --------------- -->
     <section id="js-toppings" class="toppings  l-section  l-container  center-content">
-      <h2 class="toppings__title">Selecciona máximo 4 toppings</h2>
-      <span class="toppings__text">Topping seleccionados: <spa id="js-selected-toppings">0/4</spa></span>
-      <ListCardV2 
-      v-bind:labelType="'checkbox'" 
-      v-bind:isActivateImageEl="true"
-      v-bind:products="toppings"/>
+      <Toppings />
     </section>
     <!-- ---------- $Make order --------------- -->
     <section class="make-order  l-section  l-container  center-content">
@@ -38,6 +35,7 @@ import ListCardV2 from '@/components/ListCardV2.vue'
 import Form from '@/components/Form.vue'
 import Footer  from '@/components/Footer.vue'
 import Flavors  from '@/components/Flavors.vue'
+import Toppings  from '@/components/Topping.vue'
 
 export default {
   name: 'PastelCreatorView',
@@ -46,12 +44,11 @@ export default {
     ListCardV2,
     Form,
     Footer,
-    Flavors
+    Flavors,
+    Toppings
   },
   data() {
     return {
-      title: 'No pares hasta quedar satisfecho con tu creación 🎂',
-      description: 'Pasteles deliciosos y de gran calidad para hacerte feliz.',
       baseCakes: [
         {
             price: '100',
@@ -70,82 +67,6 @@ export default {
             imageName: 'pastel-base-lv3',
             text: 'Tres niveles',
             classComponentName: 'card-cake'
-        }
-      ],
-      flavors: [
-        {
-          price: '15',
-          imageName: '',
-          text: 'Vainilla',
-          classComponentName: 'card-flavor'
-        },
-        {
-          price: '15',
-          imageName: '',
-          text: 'Chocolate',
-          classComponentName: 'card-flavor'
-        },
-        {
-          price: '200',
-          imageName: '',
-          text: 'Limon',
-          classComponentName: 'card-flavor'
-        },
-        {
-          price: '16',
-          imageName: '',
-          text: 'Uva loca',
-          classComponentName: 'card-flavor'
-        },
-        {
-            price: '15',
-            imageName: '',
-            text: 'Mora azul',
-            classComponentName: 'card-flavor'
-        },
-        {
-          price: '18',
-          imageName: '',
-          text: 'Chamoyada',
-          classComponentName: 'card-flavor'
-        }
-      ],
-      toppings: [
-        {
-          price: '6',
-          imageName: 'topping-fresas',
-          text: 'Fresas',
-          classComponentName: 'card-topping'
-        },
-        {
-          price: '15',
-          imageName: 'topping-chispast',
-          text: 'Chispas',
-          classComponentName: 'card-topping'
-        },
-        {
-          price: '8',
-          imageName: 'topping-oreo',
-          text: 'Oreo',
-          classComponentName: 'card-topping'
-        },
-        {
-          price: '10',
-          imageName: 'topping-chocolate',
-          text: 'Chocolate',
-          classComponentName: 'card-topping'
-        },
-        {
-            price: '20',
-            imageName: 'topping-text',
-            text: 'Frase',
-            classComponentName: 'card-topping'
-        },
-        {
-          price: '5',
-          imageName: 'topping-crema',
-          text: 'Crema',
-          classComponentName: 'card-topping'
         }
       ]
     }

@@ -46,15 +46,12 @@
 </script>
     
 <style scoped lang="scss">
-.card-cake,
-.card-flavor,
-.card-topping {
+.card-cake {
     &__label {
         margin-left: .5em;
     }
 }
-.card-cake,
-.card-topping {
+.card-cake {
     &__input-control {
         display: flex;
         justify-content: center;
@@ -82,37 +79,6 @@
     }
     &__label {
         font-size: 1.6em;
-    }
-}
-
-
-/*-----------------------*\
-    $Card toppings
-\*-----------------------*/
-.card-topping {
-    flex-basis: var(--grid-3-columns);
-    border: 1px solid var(--color-first);
-    background-color: transparent;
-    box-shadow: none;
-    margin-bottom: 0;
-    &__price {
-        display: inline-block;
-        width: 100%;
-        font-size: 1.4em;
-    }
-    &__image {
-        width: 30%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: .5em;
-    }
-    &__label {
-        font-size: 1.6em;
-    }
-    &__text {
-        display: inline-block;
-        text-align: center;
-        width: 100%;
     }
 }
 </style>
