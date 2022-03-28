@@ -184,10 +184,14 @@ input[type="checkbox"][disabled] {
 
 
 /*-----------------------*\
-    $Grid products
+    $Grid
 \*-----------------------*/
-.grid-products {
-    display: flex;
-    gap: 1em;
+.grid {
+    --columns: 3;
+    --gap: 1em;
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    gap: var(--gap);
+    width: 100%;
 }
 </style>

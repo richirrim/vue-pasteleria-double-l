@@ -1,20 +1,24 @@
 <template>
-    <h2 class="toppings__title">Selecciona máximo 4 toppingss</h2>
-    <span class="toppings__text">Topping seleccionados: {{ getToppingsAccountant }}/2</span>
-    <div v-for="(topping, index) in toppings" v-bind:key="topping" class="card  card-topping">
-        <img v-bind:class="classComponentName+'__image'" v-bind:src="requiredUrl(topping.imageName)" alt="Ejemplo de un pastel base de un nivel.">
-        <span class="card-topping__price">${{ topping.price }}MXN</span>
-        <div class="card-topping__input-control">
-            <input
-                class="card-topping__input" 
-                type="checkbox" 
-                ref="inputRef"
-                v-bind:id="`card-topping${index}`"
-                v-bind:value="formatTextToKebabCase(topping.text)" 
-                v-on:change="onChange">
-            <label class="card-topping__label" v-bind:for="`card-topping${index}`">{{ topping.text }}</label>
+    <section id="js-toppings" class="toppings  l-section  l-container  center-content">
+        <h2 class="toppings__title">Selecciona máximo 4 toppingss</h2>
+        <span class="toppings__text">Topping seleccionados: {{ getToppingsAccountant }}/4</span>
+        <div class="grid">
+            <div v-for="(topping, index) in toppings" v-bind:key="topping" class="card  card-topping">
+                <img v-bind:class="classComponentName+'__image'" v-bind:src="requiredUrl(topping.imageName)" alt="Ejemplo de un pastel base de un nivel.">
+                <span class="card-topping__price">${{ topping.price }}MXN</span>
+                <div class="card-topping__input-control">
+                    <input
+                        class="card-topping__input" 
+                        type="checkbox" 
+                        ref="inputRef"
+                        v-bind:id="`card-topping${index}`"
+                        v-bind:value="formatTextToKebabCase(topping.text)" 
+                        v-on:change="onChange">
+                    <label class="card-topping__label" v-bind:for="`card-topping${index}`">{{ topping.text }}</label>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 </template>
     
 <script>
@@ -64,7 +68,7 @@ export default {
     },
     methods: {
         onChange(e) {
-            const MAXIMUM_SELECTED_FLAVORS = 2
+            const MAXIMUM_SELECTED_FLAVORS = 4
             const inputElList = this.$refs.inputRef
             this.$store.commit('productsAccountant', {
                 accountant: 'toppingsAccountant', 
@@ -112,13 +116,12 @@ export default {
     
 <style scoped lang="scss"> 
 .toppings {
-    gap: var(--gutter);
-    justify-content: center;
     &__title {
         width: 100%;
     }
     &__text {
         display: inline-block;
+        margin-bottom: var(--gutter);
         font-size: 1.4em;
         width: 100%;
     }
@@ -129,7 +132,6 @@ export default {
     $Card toppings
 \*-----------------------*/
 .card-topping {
-    flex-basis: var(--grid-3-columns);
     border: 1px solid var(--color-first);
     background-color: transparent;
     box-shadow: none;

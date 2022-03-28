@@ -46,26 +46,14 @@
 </script>
     
 <style scoped lang="scss">
-.card-cake {
-    &__label {
-        margin-left: .5em;
-    }
-}
-.card-cake {
-    &__input-control {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
 /*-----------------------*\
     $Card cakes
 \*-----------------------*/
 .card-cake {
+    border: 1px solid var(--color-first);
     padding: 2em 1em;
     background-color: transparent;
-    border: 1px solid var(--color-first);
-    flex-basis: var(--grid-3-columns);
+    margin-bottom: 0;
     &__image {
         width: 30%;
         margin-left: auto;
@@ -77,8 +65,14 @@
         font-size: 1.4em;
         width: 100%;
     }
+    &__input-control {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     &__label {
         font-size: 1.6em;
+        margin-left: .5em;
     }
 }
 </style>

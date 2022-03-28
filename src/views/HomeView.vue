@@ -1,7 +1,7 @@
 <template>
   <Header 
-    :title="title"
-    :description="description"
+    :title="'Encuentra y diseña un mejor pastel'"
+    :description="'Encuentra los pasteles más deliciosos y ponle tus propias chipas crativas, con tus propias manos.'"
     v-bind:isButtonActivate="true"/>
   <main class="main-header  l-section">
     <About />
@@ -27,12 +27,6 @@ export default {
     Products,
     Contact,
     Footer
-  },
-  data() {
-    return {
-      title: 'ENCUENTRA Y DISEÑA UN MEJOR PASTEL',
-      description: 'Encuentra los pasteles más deliciosos y ponle tus propias chipas crativas, con tus propias manos.'
-    }
   }
 }
 </script>

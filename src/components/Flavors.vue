@@ -1,20 +1,24 @@
 <template>
-    <h2 class="flavors__title">Selecciona máximo dos sabores</h2>
-    <span class="flavors__text">Sabores seleccionados: {{ getFlavorsAccountant }}/2</span>
-        <div v-for="(flavor, index) in flavors" v-bind:key="flavor" class="card  card-flavor">
-            <div v-bind:class="`card  card-flavor__color  card-flavor__${formatTextToKebabCase(flavor.text)}`"></div>
-            <span class="card-flavor__price">${{ flavor.price }}MXN</span>
-            <div class="card-flavor__input-control">
-                <input
-                    class="card-flavor__input" 
-                    type="checkbox" 
-                    ref="inputRef"
-                    v-bind:id="`card-flavor${index}`"
-                    v-bind:value="formatTextToKebabCase(flavor.text)" 
-                    v-on:change="onChange">
-                <label class="card-flavor__label" v-bind:for="`card-flavor${index}`">{{ flavor.text }}</label>
+    <section id="js-flavors" class="flavors  l-section  l-container  center-content">
+        <h2 class="flavors__title">Selecciona máximo dos sabores</h2>
+        <span class="flavors__text">Sabores seleccionados: {{ getFlavorsAccountant }}/2</span>
+        <div class="grid">
+            <div v-for="(flavor, index) in flavors" v-bind:key="flavor" class="card  card-flavor">
+                <div v-bind:class="`card  card-flavor__color  card-flavor__${formatTextToKebabCase(flavor.text)}`"></div>
+                <span class="card-flavor__price">${{ flavor.price }}MXN</span>
+                <div class="card-flavor__input-control">
+                    <input
+                        class="card-flavor__input" 
+                        type="checkbox" 
+                        ref="inputRef"
+                        v-bind:id="`card-flavor${index}`"
+                        v-bind:value="formatTextToKebabCase(flavor.text)" 
+                        v-on:change="onChange">
+                    <label class="card-flavor__label" v-bind:for="`card-flavor${index}`">{{ flavor.text }}</label>
+                </div>
             </div>
         </div>
+    </section>
 </template>
     
 <script>
@@ -98,13 +102,14 @@ export default {
     
 <style scoped lang="scss">
 .flavors {
-    gap: var(--gutter);
+    display: flex;
     justify-content: center;
     &__title {
         width: 100%;
     }
     &__text {
         display: inline-block;
+        margin-bottom: var(--gutter);
         font-size: 1.4em;
         width: 100%;
     }
@@ -116,9 +121,9 @@ export default {
 \*-----------------------*/
 .card-flavor {
     border: 1px solid var(--color-first);
+    margin-bottom: 0;
     background-color: transparent;
     box-shadow: none;
-    flex-basis: var(--grid-3-columns);
     &__color {
         --width: 1em;
         margin-left: auto;

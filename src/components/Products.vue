@@ -4,7 +4,7 @@
         <div class="l-container">
             <h2 class="products__title">Top besto pasteles</h2>
             <p class="products__description">Estos son nuestros pasteles más vendidos, te enamoras a primera vista y ni se diga cuando lo pruebes.</p>
-            <div class="grid-products">
+            <div class="grid">
                 <ListCards />
             </div>
         </div>
@@ -40,4 +40,10 @@ export default {
     }
 }
 
+/*-----------------------*\
+    $Grid
+\*-----------------------*/
+.grid {
+    --columns: 4;
+}
 </style>
