@@ -1,7 +1,7 @@
 <template>
     <section id="js-flavors" class="flavors  l-section  l-container  center-content">
         <h2 class="flavors__title">Selecciona máximo dos sabores</h2>
-        <span class="flavors__text">Sabores seleccionados: {{ getFlavorsAccountant }}/2</span>
+        <span class="flavors__text">Sabores seleccionados: {{ $store.getters.getFlavorCounter }}/2</span>
         <div class="grid">
             <div v-for="(flavor, index) in flavors" v-bind:key="flavor" class="card  card-flavor">
                 <div v-bind:class="`card  card-flavor__color  card-flavor__${formatTextToKebabCase(flavor.text)}`"></div>
@@ -65,7 +65,7 @@ export default {
             })
             this.listDisabledInputEl = []
             this.createInputsListUnchecked(inputElList)
-            this.getFlavorsAccountant === 2 
+            this.$store.getters.getFlavorCounter === 2 
                 ? this.disableUncheckedInputs() 
                 : this.removeDisabledAttribute(inputElList)
         },
@@ -90,11 +90,6 @@ export default {
         },
         formatTextToKebabCase(text) {
             return text.trim().toLowerCase().split(' ').join('-')
-        }
-    },
-    computed: {
-        getFlavorsAccountant() {
-            return this.$store.state.flavorsAccountant
         }
     }
 }

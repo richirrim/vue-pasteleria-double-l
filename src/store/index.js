@@ -6,6 +6,12 @@ export default createStore({
     toppingsAccountant: 0
   },
   getters: {
+    getFlavorCounter(state) {
+      return state.flavorsAccountant
+    },
+    getToppingsCounter(state) {
+      return state.toppingsAccountant
+    }
   },
   mutations: {
     productsAccountant(state, {accountant, isChecked}) {

@@ -1,7 +1,7 @@
 <template>
     <section id="js-toppings" class="toppings  l-section  l-container  center-content">
         <h2 class="toppings__title">Selecciona máximo 4 toppingss</h2>
-        <span class="toppings__text">Topping seleccionados: {{ getToppingsAccountant }}/4</span>
+        <span class="toppings__text">Topping seleccionados: {{ $store.getters.getToppingsCounter }}/4</span>
         <div class="grid">
             <div v-for="(topping, index) in toppings" v-bind:key="topping" class="card  card-topping">
                 <img v-bind:class="classComponentName+'__image'" v-bind:src="requiredUrl(topping.imageName)" alt="Ejemplo de un pastel base de un nivel.">
@@ -76,7 +76,7 @@ export default {
             })
             this.listDisabledInputEl = []
             this.createInputsListUnchecked(inputElList)
-            this.getToppingsAccountant === MAXIMUM_SELECTED_FLAVORS 
+            this.$store.getters.getToppingsCounter === MAXIMUM_SELECTED_FLAVORS 
                 ? this.disableUncheckedInputs() 
                 : this.removeDisabledAttribute(inputElList)
         },
@@ -104,11 +104,6 @@ export default {
         },
         requiredUrl(imageName) {
             return imageName ? require(`@/assets/images/${imageName}.png`) : ''
-        }
-    },
-    computed: {
-        getToppingsAccountant() {
-            return this.$store.state.toppingsAccountant
         }
     }
 }

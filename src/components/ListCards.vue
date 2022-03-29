@@ -1,9 +1,12 @@
 <template>
-    <Card v-for="product in products" :key="product" 
+    <!-- Forma 1 de pasar datos al componente hijo -->
+    <!-- <Card v-for="product in products" :key="product" 
         :description="product.description" 
         :altDescription="product.altDescription" 
         :urlImage="product.urlImage" 
-        :price="product.price"/>
+        :price="product.price"/> -->
+    <!-- Forma 2 de pasar datos al componente hijo -->
+    <Card v-for="product in products" :key="product" v-bind:infoProduct="product"/>
 </template>
     
 <script>
