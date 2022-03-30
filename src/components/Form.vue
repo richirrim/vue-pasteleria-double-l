@@ -11,9 +11,9 @@
             </div>
         </section>
         <!-- ---------- $Flavors --------------- -->
-        <Flavors v-on:getCheckboxList="checkboxList"/>
+        <Flavors v-on:getCheckboxList="checkboxFlavorsList"/>
         <!-- ---------- $Toppings --------------- -->
-        <Toppings />
+        <Toppings v-on:getCheckboxList="checkboxToppingList"/>
      
         <!-- ---------- $Make order --------------- -->
         <section class="make-order  l-section  l-container  center-content">
@@ -48,7 +48,7 @@ export default {
             email: '',
             description: '',
             flavors: [],
-            topping: [],
+            toppings: [],
             baseCakes: [
                 {
                     price: '100',
@@ -72,10 +72,17 @@ export default {
         }
     }, 
     methods: {
-        checkboxList(listSelectedEl) {
-            this.flavors = []
-            this.flavors.push(listSelectedEl[0].value)
-            this.flavors.push(listSelectedEl[1].value)
+        addOptionsToList(listSelectedEl, list) {
+            this[list] = []
+            listSelectedEl.map((option) => {
+                this[list].push(option.value)
+            })
+        },
+        checkboxFlavorsList(addOptionsToList) {
+            this.addOptionsToList(addOptionsToList, 'flavors')
+        },
+        checkboxToppingList(listSelectedEl) {
+            this.addOptionsToList(listSelectedEl, 'toppings')
         },
         submitOrderInfo() {
             this.$store.commit('addOrdenInfo', {
@@ -83,7 +90,8 @@ export default {
                 phone: this.phone,
                 email: this.email,
                 description: this.description,
-                flavors: this.flavors
+                flavors: this.flavors,
+                topping: this.toppings
             })
         }
     }

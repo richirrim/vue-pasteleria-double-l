@@ -24,7 +24,6 @@ export default createStore({
     },
     addOrdenInfo(state, orderInfo) {
       state.orderList.push(orderInfo)
-      console.log(state.orderList)
     }
   },
   actions: {

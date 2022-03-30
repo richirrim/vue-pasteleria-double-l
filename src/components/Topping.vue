@@ -26,6 +26,8 @@ export default {
     name: 'ToppingComponent',
     data() {
         return {
+            listDisabledInputEl: [], 
+            listSelectedEl: [],
             toppings: [
                 {
                     price: '6',
@@ -68,24 +70,36 @@ export default {
     },
     methods: {
         onChange(e) {
-            const MAXIMUM_SELECTED_FLAVORS = 4
+            const MAXIMUM_SELECTED_ELEMENTS = 4
             const inputElList = this.$refs.inputRef
             this.$store.commit('productsAccountant', {
                 accountant: 'toppingsAccountant', 
                 isChecked: e.target.checked
             })
             this.listDisabledInputEl = []
-            this.createInputsListUnchecked(inputElList)
-            this.$store.getters.getToppingsCounter === MAXIMUM_SELECTED_FLAVORS 
+            this.listSelectedEl = []
+            this.createCheckboxListEl(inputElList)
+
+            this.$store.getters.getToppingsCounter === MAXIMUM_SELECTED_ELEMENTS 
                 ? this.disableUncheckedInputs() 
                 : this.removeDisabledAttribute(inputElList)
-        },
-        createInputsListUnchecked(inputElList) {
-            for (let inputEl of inputElList) {
-                if (!inputEl.checked) {
-                    this.listDisabledInputEl.push(inputEl)
-                }   
+            
+            if (this.listSelectedEl.length === MAXIMUM_SELECTED_ELEMENTS) {
+                this.submitCheckboxList(this.listSelectedEl)
             }
+        },
+        createCheckboxListEl(inputElListRef) {
+            for (let inputEl of inputElListRef) {
+                if (inputEl.checked) {
+                    this.listSelectedEl.push(inputEl)
+                } else {
+                    if (this.listSelectedEl > 0) this.removeElementArray(inputEl)
+                    this.listDisabledInputEl.push(inputEl)
+                }  
+            }
+        },
+        removeElementArray(inputElListRef) {
+            this.listSelectedEl = this.listSelectedEl.filter(el => el.id === inputElListRef.id)
         },
         disableUncheckedInputs() {
             for (let inputEl of this.listDisabledInputEl) {
@@ -104,7 +118,10 @@ export default {
         },
         requiredUrl(imageName) {
             return imageName ? require(`@/assets/images/${imageName}.png`) : ''
-        }
+        },
+        submitCheckboxList(element) {
+            this.$emit('getCheckboxList', element)
+        } 
     }
 }
 </script>

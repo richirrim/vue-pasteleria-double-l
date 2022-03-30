@@ -76,7 +76,7 @@ export default {
             }
             // Mientras no haya dos elemetos en el array
             // es inicesario enviar la info.
-            if (this.listSelectedEl.length === 2) {
+            if (this.listSelectedEl.length === LIMIT_SELECTED_ELEMENTS) {
                 this.submitCheckboxList(this.listSelectedEl)
             }
         },
