@@ -12,7 +12,7 @@
                         type="checkbox" 
                         ref="inputRef"
                         v-bind:id="`card-flavor${index}`"
-                        v-bind:value="formatTextToKebabCase(flavor.text)" 
+                        v-bind:value="flavor.text" 
                         v-on:change="onChange">
                     <label class="card-flavor__label" v-bind:for="`card-flavor${index}`">{{ flavor.text }}</label>
                 </div>
@@ -28,6 +28,7 @@ export default {
     data() {
         return {
             listDisabledInputEl: [], 
+            listSelectedEl: [],
             flavors: [
                 {
                     price: '15',
@@ -58,31 +59,47 @@ export default {
     },
     methods: {
         onChange(e) {
-            const inputElList = this.$refs.inputRef
+            const LIMIT_SELECTED_ELEMENTS = 2
+            const inputElListRef = this.$refs.inputRef
             this.$store.commit('productsAccountant', {
                 accountant: 'flavorsAccountant', 
                 isChecked: e.target.checked
             })
             this.listDisabledInputEl = []
-            this.createInputsListUnchecked(inputElList)
-            this.$store.getters.getFlavorCounter === 2 
-                ? this.disableUncheckedInputs() 
-                : this.removeDisabledAttribute(inputElList)
-        },
-        createInputsListUnchecked(inputElList) {
-            for (let inputEl of inputElList) {
-                if (!inputEl.checked) {
-                    this.listDisabledInputEl.push(inputEl)
-                }   
+            this.listSelectedEl = []
+            this.createCheckboxListEl(inputElListRef)
+            
+            if (this.$store.getters.getFlavorCounter === LIMIT_SELECTED_ELEMENTS) {
+                this.disableUncheckedInputs() 
+            } else {
+                this.removeDisabledAttribute(inputElListRef)
             }
+            // Mientras no haya dos elemetos en el array
+            // es inicesario enviar la info.
+            if (this.listSelectedEl.length === 2) {
+                this.submitCheckboxList(this.listSelectedEl)
+            }
+        },
+        createCheckboxListEl(inputElListRef) {
+            for (let inputEl of inputElListRef) {
+                if (inputEl.checked) {
+                    this.listSelectedEl.push(inputEl)
+                } else {
+                    if (this.listSelectedEl > 0) this.removeElementArray(inputEl)
+                    this.listDisabledInputEl.push(inputEl)
+                }  
+            }
+        },
+        removeElementArray(inputElListRef) {
+            this.listSelectedEl = this.listSelectedEl.filter(el => el.id === inputElListRef.id)
         },
         disableUncheckedInputs() {
             for (let inputEl of this.listDisabledInputEl) {
                 inputEl.setAttribute('disabled', '')
             }
         },
-        removeDisabledAttribute(inputElList) {
-            for (let inputEl of inputElList) {
+        removeDisabledAttribute(inputElListRef) {
+            for (let inputEl of inputElListRef) {
                 if (!inputEl.checked) {
                     inputEl.removeAttribute('disabled')
                 }   
@@ -90,7 +107,10 @@ export default {
         },
         formatTextToKebabCase(text) {
             return text.trim().toLowerCase().split(' ').join('-')
-        }
+        },
+        submitCheckboxList(element) {
+            this.$emit('getCheckboxList', element)
+        } 
     }
 }
 </script>

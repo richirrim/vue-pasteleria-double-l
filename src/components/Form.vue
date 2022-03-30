@@ -11,7 +11,7 @@
             </div>
         </section>
         <!-- ---------- $Flavors --------------- -->
-        <Flavors />
+        <Flavors v-on:getCheckboxList="checkboxList"/>
         <!-- ---------- $Toppings --------------- -->
         <Toppings />
      
@@ -19,11 +19,11 @@
         <section class="make-order  l-section  l-container  center-content">
             <h2 class="make-order__title">Realizar pedido</h2>
             <div class="make-order__wrapper  card">
-                <input class="make-order__input" type="text" placeholder="Escribe tu nombre completo" name="names" required>
-                <input class="make-order__input" type="text" placeholder="Escribe tu número de celular" name="phone-number" required>
-                <input class="make-order__input" type="text" placeholder="Escribe tu correo electronico" name="email" required>
-                <textarea class="make-order__textarea" type="textarea" placeholder="Describe de forma breve y general tu pastel ideal." name="description" rows="10" cols="50" required></textarea>
-                <input class="make-order__button  button" type="button" value="Realizar pedido">
+                <input v-model="fullName" class="make-order__input" type="text" placeholder="Escribe tu nombre completo" name="names" required>
+                <input v-model="phone" class="make-order__input" type="text" placeholder="Escribe tu número de celular" name="phone-number" required>
+                <input v-model="email" class="make-order__input" type="text" placeholder="Escribe tu correo electronico" name="email" required>
+                <textarea v-model="description" class="make-order__textarea" type="textarea" placeholder="Describe de forma breve y general tu pastel ideal." name="description" rows="10" cols="50" required></textarea>
+                <input class="make-order__button  button" type="submit" value="Realizar pedido" v-on:click.prevent="submitOrderInfo">
             </div>
         </section>
     </form>
@@ -43,6 +43,12 @@ export default {
     },
     data() {
         return {
+            fullName: '',
+            phone: '',
+            email: '',
+            description: '',
+            flavors: [],
+            topping: [],
             baseCakes: [
                 {
                     price: '100',
@@ -63,6 +69,22 @@ export default {
                     classComponentName: 'card-cake'
                 }
             ]
+        }
+    }, 
+    methods: {
+        checkboxList(listSelectedEl) {
+            this.flavors = []
+            this.flavors.push(listSelectedEl[0].value)
+            this.flavors.push(listSelectedEl[1].value)
+        },
+        submitOrderInfo() {
+            this.$store.commit('addOrdenInfo', {
+                fullName: this.fullName,
+                phone: this.phone,
+                email: this.email,
+                description: this.description,
+                flavors: this.flavors
+            })
         }
     }
 }
