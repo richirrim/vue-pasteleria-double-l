@@ -3,9 +3,12 @@
     <nav class="main-nav">
         <ul class="menu">
             <li class="menu__item"  v-for="page in pages" v-bind:key="page">
-                <a class="menu__link" 
-                v-bind:href="page.url === '/' ? page.url : '#'+page.url" 
-                @click.prevent="scrollInto(page.url)">{{ page.title }}</a>
+                <router-link 
+                    class="menu__link"
+                    v-bind:to="url(page.url)" 
+                    v-on:click.prevent="scrollInto(page.url)">
+                    {{ page.title }}
+                </router-link>
             </li>
         </ul>
     </nav>
@@ -32,6 +35,10 @@ export default {
                 {
                     title: 'Contacto',
                     url: 'contact'
+                },
+                {
+                    title: 'Dashboard',
+                    url: 'dashboard'
                 }
             ]
         }
@@ -41,7 +48,11 @@ export default {
             const section = document.querySelector(`#${id}`);
             section.scrollIntoView({ behavior: 'smooth' });
         },
-
+        url(url) {
+            if (url === '/') return url
+            if (url === 'dashboard') return url
+            return `#${url}`
+        }
     }
 }
 </script>

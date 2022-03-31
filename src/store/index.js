@@ -4,7 +4,10 @@ export default createStore({
   state: {
     flavorsAccountant: 0,
     toppingsAccountant: 0,
-    orderList: []
+    orderList: [],
+    users: [],
+    username: null,
+    auth: false
   },
   getters: {
     getFlavorCounter(state) {
@@ -24,9 +27,23 @@ export default createStore({
     },
     addOrdenInfo(state, orderInfo) {
       state.orderList.push(orderInfo)
+    },
+    doLogin(state, username) {
+      state.auth = true
+      state.username = username
+    },
+    doLogout(state) {
+      state.auth = false
+      state.username = false
     }
   },
   actions: {
+    doLogin({ commit }, username) {
+      commit('doLogin', username)
+    },
+    doLogout({ commit }) {
+      commit('doLogout')
+    }
   },
   modules: {
   }
