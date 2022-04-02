@@ -163,6 +163,7 @@ input[type="checkbox"][disabled] {
     $Button
 \*-----------------------*/
 .button {
+    border: none;
     border-radius: .3em;
     padding: .6em 1.8em .6em;
     color: var(--color-text);

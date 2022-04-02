@@ -15,7 +15,10 @@ export default createStore({
     },
     getToppingsCounter(state) {
       return state.toppingsAccountant
-    }
+    },
+    getOrdersList(state) {
+      return state.orderList
+    } 
   },
   mutations: {
     productsAccountant(state, {accountant, isChecked}) {

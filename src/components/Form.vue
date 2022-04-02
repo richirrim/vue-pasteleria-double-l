@@ -20,7 +20,7 @@
             <h2 class="make-order__title">Realizar pedido</h2>
             <div class="make-order__wrapper  card">
                 <input v-model="fullName" class="make-order__input" type="text" placeholder="Escribe tu nombre completo" name="names" required>
-                <input v-model="phone" class="make-order__input" type="text" placeholder="Escribe tu número de celular" name="phone-number" required>
+                <input v-model="phone" class="make-order__input" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Escribe tu número de celular: (981) 123-9988" name="phone-number" title="Un número de teléfono válido consta de un código de 3 dígitos entre paréntesis, un espacio, los tres primeros dígitos del" required>
                 <input v-model="email" class="make-order__input" type="text" placeholder="Escribe tu correo electronico" name="email" required>
                 <textarea v-model="description" class="make-order__textarea" type="textarea" placeholder="Describe de forma breve y general tu pastel ideal." name="description" rows="10" cols="50" required></textarea>
                 <input class="make-order__button  button" type="submit" value="Realizar pedido" v-on:click.prevent="submitOrderInfo">
@@ -84,8 +84,8 @@ export default {
         checkboxToppingList(listSelectedEl) {
             this.addOptionsToList(listSelectedEl, 'toppings')
         },
-        submitOrderInfo() {
-            this.$store.commit('addOrdenInfo', {
+        async submitOrderInfo() {
+            await this.$store.commit('addOrdenInfo', {
                 fullName: this.fullName,
                 phone: this.phone,
                 email: this.email,
@@ -93,6 +93,9 @@ export default {
                 flavors: this.flavors,
                 topping: this.toppings
             })
+            this.$store.state.flavorsAccountant =  0
+            this.$store.state.toppingsAccountant = 0
+            this.$router.push('/')
         }
     }
 }

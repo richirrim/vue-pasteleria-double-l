@@ -29,8 +29,7 @@
     padding: var(--padding);
     color: #fff;
     text-align: center;
-    height: calc(var(--header-height) * 6);
-
+    margin-bottom: 1em;
     & > div { 
         margin: auto; 
     }

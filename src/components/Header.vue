@@ -3,14 +3,17 @@
     <header class="main-header  l-section">
         <img class="hero-image" src="../assets/images/banner.jpg" alt="Imagen, banner, principal de la página.">
         <div class="main-header__content">
-            <div class="container  l-container">
+            <div class="main-header__bar  container  l-container">
                 <Logo />
                 <Navigation />
                 <router-link v-if="activate" class="button  main-header__button  icon-cake" to="/pastelcreator">Diseña tu pastel</router-link>
                 <router-view/>
             </div>
+            <div class="main-header__texts  l-container">
+                <Banner v-bind:title="title" v-bind:description="description"/>  
+                <slot class="main-header__button" name="button"></slot>
+            </div>
         </div>
-        <Banner v-bind:title="title" v-bind:description="description"/>  
     </header>  
 </template>
     
@@ -46,13 +49,17 @@ export default {
 .main-header {
     position: relative;
     background-color: var(--color-first);
-    
     &__button {
         background-color: var(--color-accent);
     }
     /* Coloca todo el contenido arriba de la hero image. */
     &__content {
+        display: flex;
+        flex-direction: column;
         position: relative;
+    }
+    &__bar {
+        width: 100%;
     }
     .container {
         padding: 1em;
@@ -70,6 +77,16 @@ export default {
         height: 100%;
         object-fit: cover;
         object-position: center;
+    }
+    &__texts {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: calc(var(--header-height) * 6);
+    }
+    &__button {
+        background-color: var(--color-first);
     }
 }
 
